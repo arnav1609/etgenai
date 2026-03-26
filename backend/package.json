@@ -1,0 +1,31 @@
+{
+  "name": "neurofin-backend",
+  "version": "1.0.0",
+  "description": "Auth backend for NeuroFin app (Express + MongoDB + JWT)",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.1009.0",
+    "@aws-sdk/client-ssm": "^3.1009.0",
+    "@faker-js/faker": "^10.1.0",
+    "aws-jwt-verify": "^5.1.1",
+    "axios": "^1.13.6",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^7.0.0",
+    "mongoose": "^8.8.0",
+    "node-cron": "^4.2.1",
+    "razorpay": "^2.9.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

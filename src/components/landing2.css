@@ -1,0 +1,365 @@
+/* ============================================================
+   NEUROFIN LANDING v2 — CINEMATIC DESIGN SYSTEM
+   All classes prefixed nf2- to avoid conflicts
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── Base token overrides for landing ── */
+:root {
+  --nf2-black: #050507;
+  --nf2-panel: #08080F;
+  --nf2-border: rgba(255,255,255,0.07);
+  --nf2-indigo: #4f46e5;
+  --nf2-sky: #0ea5e9;
+  --nf2-violet: #7c3aed;
+  --nf2-emerald: #10b981;
+  --nf2-muted: #6b7280;
+  --nf2-text: #f0f0f8;
+}
+
+/* ── Typography ── */
+.nf2-display {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  line-height: 0.93;
+  letter-spacing: -0.04em;
+  color: var(--nf2-text);
+}
+.nf2-body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.nf2-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--nf2-muted);
+}
+
+/* ── Character animation masks ── */
+.nf2-char-wrapper {
+  overflow: hidden;
+  display: inline-block;
+}
+.nf2-char {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+}
+
+/* ── Marquee ── */
+@keyframes nf2-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.nf2-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: nf2-marquee 22s linear infinite;
+  white-space: nowrap;
+}
+.nf2-marquee-track:hover { animation-play-state: paused; }
+
+/* ── Manifesto line reveal ── */
+.nf2-manifesto-line {
+  overflow: hidden;
+}
+.nf2-manifesto-text {
+  display: block;
+  transform: translateY(105%);
+  will-change: transform;
+}
+
+/* ── Number counter ── */
+.nf2-stat-mega {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(5rem, 10vw, 10rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: var(--nf2-text);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+.nf2-stat-glow {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 80px;
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* ── Product reveal ── */
+.nf2-product-frame {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 60px 180px rgba(0,0,0,0.95),
+    0 0 120px rgba(79,70,229,0.12);
+  will-change: transform, opacity;
+}
+.nf2-product-chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nf2-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* ── Feature badge (floating callout) ── */
+.nf2-feature-badge {
+  position: absolute;
+  background: rgba(8,8,20,0.85);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 10px 14px;
+  backdrop-filter: blur(20px);
+  will-change: transform, opacity;
+}
+@keyframes nf2-badge-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+.nf2-badge-float-1 { animation: nf2-badge-float 5s ease-in-out infinite; }
+.nf2-badge-float-2 { animation: nf2-badge-float 6.5s ease-in-out infinite 1s; }
+.nf2-badge-float-3 { animation: nf2-badge-float 4.5s ease-in-out infinite 2s; }
+
+/* ── Horizontal scroll scene ── */
+.nf2-scenes-container {
+  position: relative;
+  overflow: hidden;
+}
+.nf2-scenes-track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  will-change: transform;
+}
+.nf2-scene {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Conversation bubble ── */
+.nf2-bubble {
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: opacity, transform;
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.nf2-bubble.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Gradient text variants ── */
+.nf2-text-indigo {
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nf2-text-sky {
+  background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nf2-text-warm {
+  background: linear-gradient(135deg, #fbbf24 0%, #f97316 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nf2-text-emerald {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section base ── */
+.nf2-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Glow orb ── */
+@keyframes nf2-orb-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 0.8; transform: scale(1.08); }
+}
+.nf2-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  animation: nf2-orb-pulse 8s ease-in-out infinite;
+}
+
+/* ── Divider line ── */
+.nf2-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08) 40%, rgba(255,255,255,0.08) 60%, transparent);
+}
+
+/* ── Scan sweep ── */
+@keyframes nf2-sweep {
+  0%   { top: -2px; opacity: 0.8; }
+  100% { top: 100%;  opacity: 0; }
+}
+.nf2-sweep {
+  position: absolute;
+  left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(79,70,229,0.6), rgba(14,165,233,0.4), transparent);
+  pointer-events: none;
+  animation: nf2-sweep 5s linear infinite;
+  z-index: 10;
+}
+
+/* ── Grid overlay ── */
+.nf2-grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Big number gradient background ── */
+.nf2-number-bg {
+  background: radial-gradient(ellipse at center, rgba(79,70,229,0.06) 0%, transparent 70%);
+}
+
+/* ── Word reveal animation (scroll-triggered) ── */
+.nf2-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.nf2-word-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  will-change: transform;
+}
+
+/* ── CTA button variations ── */
+.nf2-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #4f46e5;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.9rem 2.2rem;
+  border-radius: 100px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: 0 0 0 0 rgba(79,70,229,0.4);
+}
+.nf2-btn-primary:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 40px rgba(79,70,229,0.35);
+}
+.nf2-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #9ca3af;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nf2-btn-ghost:hover { color: #e5e7eb; }
+
+/* ── Testimonial card ── */
+.nf2-tcard {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 28px;
+  transition: background 0.3s, border-color 0.3s;
+}
+.nf2-tcard:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.12);
+}
+
+/* ── Scroll progress bar ── */
+.nf2-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4f46e5, #0ea5e9);
+  z-index: 9999;
+  transform-origin: left;
+  will-change: transform;
+}
+
+/* ── Floating noise grain ── */
+.nf2-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  animation: nf2-grain-anim 0.4s steps(1) infinite;
+}
+@keyframes nf2-grain-anim {
+  0%  { background-position: 0   0; }
+  20% { background-position: -60px -40px; }
+  40% { background-position: 40px  60px; }
+  60% { background-position: -20px  80px; }
+  80% { background-position: 60px  -60px; }
+}
+
+/* ── Scene numbers ── */
+.nf2-scene-number {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+}
+
+/* ── Light streak sweep ── */
+@keyframes nf2-streak-h {
+  0%   { transform: translateX(-120%) skewX(-15deg); opacity: 0; }
+  15%  { opacity: 0.7; }
+  85%  { opacity: 0.5; }
+  100% { transform: translateX(220%) skewX(-15deg); opacity: 0; }
+}
+.nf2-streak {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 25%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.035), transparent);
+  animation: nf2-streak-h 7s ease-in-out infinite;
+  pointer-events: none;
+}
+.nf2-streak-2 { animation-delay: 3.5s; }
